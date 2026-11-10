@@ -1,0 +1,34 @@
+package com.lms.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "Users")
+public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer userId;
+	@Column(nullable = false)
+	private String userName;
+	@Column(unique = true)
+	private long phoneNumber;
+	@Column(unique = true)
+	private String email;
+
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+}
